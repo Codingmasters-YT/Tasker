@@ -15,12 +15,13 @@ def clear_json(filename='Final Run\\task.json'):
         json.dump(fileformat, file, indent = 4)
         
 
-while True:
-  task = input("whats do you want to open:")
-  timefortask = input("when do you want to do it: ")
+task = input("whats do you want to open:")
+timefortask = input("when do you want to do it: ")
 
-  def tasks():
-    webbrowser.open(task)
+def tasks():
+  webbrowser.open(task)
+
+while True:
   
   schedule.every().day.at(timefortask).do(tasks)
   schedule.every().day.at("00:00").do(clear_json)
