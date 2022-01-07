@@ -1,62 +1,145 @@
-from _typeshed import HasFileno, StrOrBytesPath
-from tkinter import *
+import tkinter.font as tkFont
 import tkinter as tk
 from tkinter import messagebox as msg
-
-
-root = tk.Tk()
-root.geometry("600x300")
-root.maxsize(600,300)
-root.minsize(600,300)
-root.title("Tasker")
-# root.wm_iconbitmap("covid.ico")
-def contact():
-    msg.showinfo("Contact Us", "Contact us at: 98XXXXXXXX")
-
-def mail():
-    msg.showinfo("Mail Us", "Mail us at: xxxxxx.gmail.com")
-def rate():
-    ratev = msg.askquestion("Rate us", "Was your experience at our Application good?")
-    if ratev == "yes":  
-        msg.showinfo("Thank you for your Feeback","Great!! Please rate us at AppStore - PyTkDevelopers")
-    else:
-        msg.showinfo("Thank you for your Feeback", "Please tell what went wrong, we will contact you soon - PyTkDevelopers")
-
-def quit_():
-    exit()
-
-
-menubar = Menu(root)
-filemenu = Menu(menubar, tearoff=0)
-
-filemenu.add_command(label="New", command=contact)
-filemenu.add_command(label="Open", command=contact)
-filemenu.add_command(label="Save", command=contact)
-filemenu.add_separator()
-filemenu.add_command(label="Exit", command=root.quit)
-menubar.add_cascade(label="File", menu=filemenu)
-
-# create a submenu
-submenu = Menu(filemenu, tearoff=0)
-submenu.add_command(label="Dark Mode", command=contact)
-submenu.add_command(label="Light Mode", command=mail)
-filemenu.add_cascade(label="Theme", menu=submenu)
-
-
-helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=contact)
-helpmenu.add_command(label="About...", command=contact)
-menubar.add_cascade(label="Help", menu=helpmenu)
-
-root.config(menu=menubar)
-
-#make a beatiful button
+from tkinter import ttk
 
 
 
+f = ("comicsansms", 15, "bold")
 
-submit = Button(root, text="Submit", bg="#20C20E", fg="white", relief="raised")
-# flat, groove, raised, ridge, solid, or sunken
 
-submit.grid()
-root.mainloop()
+class App:
+    def __init__(self, root):
+        width=1000
+        height=600
+        screenwidth = root.winfo_screenwidth()
+        screenheight = root.winfo_screenheight()
+        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
+        root.geometry(alignstr)
+        root.resizable(width=False, height=False)
+        root.title("Tasker")
+        # self.wm_iconbitmap("covid.ico")
+        menubar = tk.Menu(root)
+        navigateMenu = tk.Menu(root, tearoff=0)
+        about_us = tk.Menu(root, tearoff=0)
+        contact = tk.Menu(root, tearoff=0)
+        rate = tk.Menu(root, tearoff=0)
+        quit = tk.Menu(root, tearoff=0)
+
+        menubar.add_cascade(label="Navigate", menu=navigateMenu)
+        navigateMenu.add_command(label="Know About Covid-19")
+        navigateMenu.add_command(label="Covid - 19 Cases")
+        navigateMenu.add_command(label="Precautions")
+        navigateMenu.add_command(label="Self Assessment Test")
+
+        about_us.add_command(label = "About Us", command=self.about)
+        contact.add_command(label="Contact Us", command=self.contact)
+        contact.add_command(label="Mail to Us", command=self.mail)
+        rate.add_command(label="Rate Us", command=self.rate)
+        quit.add_command(label="Quit", command=self.quit_)
+
+        menubar.add_cascade(label="About", menu=about_us)
+        menubar.add_cascade(label="Help", menu=contact)
+        menubar.add_cascade(label="Rate", menu=rate)
+        menubar.add_cascade(label="Quit", menu=quit)
+
+        root.configure(menu=menubar)
+
+        
+        InputTitle=tk.Entry(root)
+        InputTitle["borderwidth"] = "1px"
+        ft = tkFont.Font(family='Roboto',size=14)
+        InputTitle["font"] = ft
+        InputTitle["fg"] = "#333333"
+        InputTitle["justify"] = "center"
+        InputTitle["text"] = "Name For the Task"
+        InputTitle.place(x=10,y=530,width=183,height=58)
+        InputTitle.insert(0,"Name For the Task")
+
+        InputUrl=tk.Entry(root)
+        InputUrl["borderwidth"] = "1px"
+        ft = tkFont.Font(family='Roboto',size=14)
+        InputUrl["font"] = ft
+        InputUrl["fg"] = "#333333"
+        InputUrl["justify"] = "center"
+        InputUrl["text"] = "URL of the Website"
+        InputUrl.place(x=200,y=530,width=493,height=58)
+        InputUrl.insert(0, "URL for the website")
+
+        InputTime=tk.Entry(root)
+        InputTime["borderwidth"] = "1px"
+        ft = tkFont.Font(family='Roboto',size=14)
+        InputTime["font"] = ft
+        InputTime["fg"] = "#333333"
+        InputTime["justify"] = "center"
+        InputTime["text"] = "HH/MM/SS"
+        InputTime.place(x=700,y=530,width=133,height=58)
+        InputTime.insert(0, "HH:MM:SS")
+        AddBtn=tk.Button(root)
+        AddBtn["bg"] = "#5fb878"
+        # AddBtn["cursor"] = "Arrow"
+        ft = tkFont.Font(family='Roboto',size=14)
+        AddBtn["font"] = ft
+        AddBtn["fg"] = "#000000"
+        AddBtn["justify"] = "center"
+        AddBtn["text"] = "Add"
+        AddBtn.place(x=840,y=530,width=149,height=58)
+        # AddBtn["command"] = self.AddBtn_command
+
+        TitleMsg=tk.Message(root)
+        ft = tkFont.Font(family='Roboto',size=29)
+        TitleMsg["font"] = ft
+        TitleMsg["fg"] = "#333333"
+        TitleMsg["justify"] = "center"
+        TitleMsg["text"] = "Tasks"
+        TitleMsg.place(x=340,y=10,width=289,height=40)
+
+    # def GButton_294_command(self):
+    #     print("command")
+    
+
+    def about(self):
+        msg.showinfo("About", "This is a Application developed by PyTkDevelopers to help people Get Covid - 19 info on their Fingertips")
+
+    def contact(self):
+        msg.showinfo("Contact Us", "Contact us at: 98XXXXXXXX")
+
+    def mail(self):
+        msg.showinfo("Mail Us", "Mail us at: xxxxxx.gmail.com")
+    def rate(self):
+        ratev = msg.askquestion("Rate us", "Was your experience at our Application good?")
+        if ratev == "yes":  
+            msg.showinfo("Thank you for your Feeback","Great!! Please rate us at AppStore - PyTkDevelopers")
+        else:
+            msg.showinfo("Thank you for your Feeback", "Please tell what went wrong, we will contact you soon - PyTkDevelopers")
+    def quit_(self):
+        exit()
+
+  
+  
+
+
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+
+    app = App(root)
+    root.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
