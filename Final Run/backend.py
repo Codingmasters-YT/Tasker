@@ -24,7 +24,7 @@ def tasks():
 while True:
   
   schedule.every().day.at(timefortask).do(tasks)
-  schedule.every().day.at("00:00").do(clear_json)
+  schedule.every().day.at("00:00:00").do(clear_json)
   schedule.run_pending()
   time.sleep(1)
 
