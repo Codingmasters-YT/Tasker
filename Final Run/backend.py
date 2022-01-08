@@ -26,8 +26,7 @@ def write_json(new_data, filename='Final Run\\task.json'):
         # convert back to json.
         json.dump(file_data, file, indent = 4)
         
-global task
-global time1
+
 def add_task(name, task, time1):  
   y={
       "name": name,
