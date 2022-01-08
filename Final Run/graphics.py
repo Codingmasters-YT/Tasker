@@ -1,12 +1,11 @@
+from re import U
 import tkinter.font as tkFont
 import tkinter as tk
 from tkinter import messagebox as msg
 from tkinter import ttk
 import backend as bk
 
-
-
-f = ("comicsansms", 15, "bold")
+# storage variables
 
 
 class App:
@@ -21,18 +20,13 @@ class App:
         root.title("Tasker")
         root.config(bg="#303443")
         root.wm_iconbitmap("./Final Run/to-do.ico")
+
+        # Menubar code
         menubar = tk.Menu(root, background='#303443', fg='#5fb878')
-        navigateMenu = tk.Menu(root, tearoff=0)
         about_us = tk.Menu(root, tearoff=0)
         contact = tk.Menu(root, tearoff=0)
         rate = tk.Menu(root, tearoff=0)
         quit = tk.Menu(root, tearoff=0)
-
-        menubar.add_cascade(label="Navigate", menu=navigateMenu)
-        navigateMenu.add_command(label="Know About Covid-19")
-        navigateMenu.add_command(label="Covid - 19 Cases")
-        navigateMenu.add_command(label="Precautions")
-        navigateMenu.add_command(label="Self Assessment Test")
 
         about_us.add_command(label = "About Us", command=self.about)
         contact.add_command(label="Contact Us", command=self.contact)
@@ -47,11 +41,16 @@ class App:
 
         root.configure(menu=menubar)
 
-        # dark mode and 
-
-        global name
-        name=""
-        InputTitle=tk.Entry(root, textvariable=name)
+        # Storage variables
+        global taskname
+        global taskurl
+        global tasktime
+        taskname = tk.StringVar()
+        taskurl = tk.StringVar()
+        tasktime = tk.StringVar()
+        
+        
+        InputTitle=tk.Entry(root, textvariable=taskname)
         InputTitle["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
         InputTitle["font"] = ft
@@ -61,9 +60,7 @@ class App:
         InputTitle.place(x=10,y=516,width=183,height=58)
         
 
-        global task_url
-        task_url=""
-        InputUrl=tk.Entry(root, textvariable=task_url)
+        InputUrl=tk.Entry(root, textvariable=taskurl)
         InputUrl["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
         InputUrl["font"] = ft
@@ -73,9 +70,8 @@ class App:
         InputUrl.place(x=200,y=516,width=493,height=58)
         
 
-        global time
-        time=""
-        InputTime=tk.Entry(root,textvariable=time)
+
+        InputTime=tk.Entry(root, textvariable=tasktime)
         InputTime["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
         InputTime["font"] = ft
@@ -107,14 +103,34 @@ class App:
         TitleMsg.place(x=340,y=10,width=289,height=29)
 
     def AddBtn_command(self):
-        print(name)
-        print(task_url)
-        print(time)
-        bk.add_task(name, task_url, time)
+        bk.add_task(taskname.get(),taskurl.get(),tasktime.get())
+
+
     
 
+    # def GButton_294_command(self):
+    #     task = taskname.get()
+    #     url = taskurl.get()
+    #     time = tasktime.get()
+        
+
+    #     global fileformat
+    #     fileformat={
+    #         "tasks": [
+        
+    #         ]
+    #     }
+    #     with open("./File Run/tasks.json", "r") as f:
+    #         fileformat = json.load(f)
+    #         fileformat["tasks"].append({"task": task, "url": url, "time": time})
+
+    #     while True:
+    #         schedule.every().day.at(time).do(webbrowser.open(url))
+    #         schedule.run_pending()
+    #         time.sleep(1)
+    
     def about(self):
-        msg.showinfo("About", "This is a Application developed by PyTkDevelopers to help people Get Covid - 19 info on their Fingertips")
+        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def contact(self):
         msg.showinfo("Contact Us", "Contact us at: 98XXXXXXXX")
@@ -130,8 +146,14 @@ class App:
     def quit_(self):
         exit()
 
-  
-  
+    # def clear_json(filename='Final Run\\task.json'):
+    #         with open(filename,'w') as file:
+    #             json.dump(fileformat, file, indent = 4)
+
+    # while True:
+    #     schedule.every().day.at("00:00:00").do(clear_json)
+    #     schedule.run_pending()
+    #     time.sleep(1)
 
 
 
