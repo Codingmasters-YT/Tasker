@@ -27,10 +27,13 @@ def write_json(new_data, filename='./Final Run/task.json'):
         json.dump(file_data, file, indent = 4)
         
 
+
 global tasklist
 tasklist = []
-  
+
+
 def add_task(name, task, time1):  
+  
   y={
       "name": name,
       "task": task,
@@ -47,16 +50,13 @@ def add_task(name, task, time1):
   for i in data['tasks']:
     tasklist.append(i)
 
-tasklist=tasklist
+  
 
-
-
-def main():
   while True:
     for i in tasklist:
       time1=i['time']
-      time2=str(time1)
-      task1=str(i['task'])
+      time2=time1
+      task1=i['task']
 
       global date
       date = datetime.now()
@@ -75,9 +75,28 @@ def main():
       break
     break
 
-      
+
+
+# def main():
+#   while True:
+#     for i in tasklist:
+#       time1=i['time']
+#       time2=time1
+#       task1=i['task']
+
+#       global date
+#       date = datetime.now()
 
     
+      
+#       if date.strftime("%H:%M:%S") == time2:
+#         webbrowser.open(task1)
+#         break
 
-add_task("","www.google.com","20:07:30")
-main()
+
+#       elif date.strftime("%H:%M:%S") == "00:00:00":
+#         clear_json()
+#         break
+
+#       break
+#     break
