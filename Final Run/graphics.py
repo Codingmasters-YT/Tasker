@@ -1,9 +1,9 @@
-from re import U
 import tkinter.font as tkFont
 import tkinter as tk
 from tkinter import messagebox as msg
 from tkinter import ttk
 import backend as bk
+import webbrowser
 
 # storage variables
 
@@ -104,6 +104,8 @@ class App:
 
     def AddBtn_command(self):
         bk.add_task(taskname.get(),taskurl.get(),tasktime.get())
+        bk.main()
+
 
 
     
@@ -163,8 +165,7 @@ if __name__ == "__main__":
 
     app = App(root)
     root.mainloop()
-    bk.main()
-
+    
 
 
 

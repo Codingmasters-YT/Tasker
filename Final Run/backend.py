@@ -44,18 +44,18 @@ def add_task(name, task, time1):
     tasklist.append(i)
 
 
-def tasks():
-  task=tasklist[0]['task']
-  webbrowser.open(task)
+
+
 
 def main():
-  while True:
-
-    schedule.every().day.at(tasklist[0]['time']).do(tasks)
-    schedule.every().day.at("00:00:00").do(clear_json)
-    schedule.run_pending()
-    time.sleep(1)
-
+  # while True:
+    # for i in tasklist:
+    #   schedule.every().day.at(i['time']).do(webbrowser.open(i['task']))
+    #   print(i['time'])
+    # schedule.every().day.at("00:00:00").do(clear_json)
+    # schedule.run_pending()
+    # time.sleep(1)
+  print(tasklist)
 
 
 
