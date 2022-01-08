@@ -9,7 +9,7 @@ from datetime import datetime
 
 while True:
     date=datetime.now()
-    if date.strftime("%H:%M:%S") == "00:00:00":
+    if date.strftime("%H:%M:%S") == "17:34:50":
         bk.clear_all()
     else:
         
@@ -138,10 +138,10 @@ while True:
     
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = App(root)
-    root.mainloop()
-    bk.main()
+    if __name__ == "__main__":
+        root = tk.Tk()
+        app = App(root)
+        root.mainloop()
+        bk.main()
     
     
