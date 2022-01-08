@@ -1,7 +1,6 @@
 import json
 import webbrowser
-import schedule
-import time
+from datetime import datetime
 
 global fileformat
 fileformat={
@@ -39,7 +38,8 @@ def add_task(name, task, time1):
   global tasklist
   tasklist = []
   f=open('Final Run\\task.json',)
-  data=json.load(f)
+  data=json.load(f)  
+
   for i in data['tasks']:
     tasklist.append(i)
 
@@ -48,17 +48,17 @@ def add_task(name, task, time1):
 
 
 def main():
-  # while True:
-    # for i in tasklist:
-    #   schedule.every().day.at(i['time']).do(webbrowser.open(i['task']))
-    #   print(i['time'])
-    # schedule.every().day.at("00:00:00").do(clear_json)
-    # schedule.run_pending()
-    # time.sleep(1)
-  print(tasklist)
+  while True:
+    for i in tasklist:
+      time1=i['time']
+      task1=i['task']
+
+    global date
+    date = datetime.now()
+      
+    if date.strftime("%H:%M:%S") == time1:
+      webbrowser.open(task1)
+      break
 
 
 
-  # Today : Backend
-  # Tomorrow : Frontend
-  # Day next to tomorrow: Backend and Frontend LINKING

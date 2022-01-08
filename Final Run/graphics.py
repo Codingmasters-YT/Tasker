@@ -4,8 +4,8 @@ from tkinter import messagebox as msg
 from tkinter import ttk
 import backend as bk
 import webbrowser
+from datetime import datetime
 
-# storage variables
 
 
 class App:
@@ -49,7 +49,7 @@ class App:
         taskurl = tk.StringVar()
         tasktime = tk.StringVar()
         
-        
+        global InputTitle
         InputTitle=tk.Entry(root, textvariable=taskname)
         InputTitle["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
@@ -59,7 +59,7 @@ class App:
         InputTitle["justify"] = "center"
         InputTitle.place(x=10,y=516,width=183,height=58)
         
-
+        global InputUrl
         InputUrl=tk.Entry(root, textvariable=taskurl)
         InputUrl["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
@@ -68,9 +68,9 @@ class App:
         InputUrl["bg"] = "#3b4152"
         InputUrl["justify"] = "center"
         InputUrl.place(x=200,y=516,width=493,height=58)
-        
 
 
+        global InputTime
         InputTime=tk.Entry(root, textvariable=tasktime)
         InputTime["borderwidth"] = "1px"
         ft = tkFont.Font(family='Roboto',size=14)
@@ -102,34 +102,20 @@ class App:
         TitleMsg["text"] = "Tasks"
         TitleMsg.place(x=340,y=10,width=289,height=29)
 
+        while True:
+            date=datetime.now()
+            if date.strftime("%H:%M:%S") == "15:17:00":
+                bk.clear_json()
+            else:
+                break
+
+        
+
     def AddBtn_command(self):
         bk.add_task(taskname.get(),taskurl.get(),tasktime.get())
-        bk.main()
-
-
-
-    
-
-    # def GButton_294_command(self):
-    #     task = taskname.get()
-    #     url = taskurl.get()
-    #     time = tasktime.get()
-        
-
-    #     global fileformat
-    #     fileformat={
-    #         "tasks": [
-        
-    #         ]
-    #     }
-    #     with open("./File Run/tasks.json", "r") as f:
-    #         fileformat = json.load(f)
-    #         fileformat["tasks"].append({"task": task, "url": url, "time": time})
-
-    #     while True:
-    #         schedule.every().day.at(time).do(webbrowser.open(url))
-    #         schedule.run_pending()
-    #         time.sleep(1)
+        InputTitle.delete(0,tk.END)
+        InputUrl.delete(0,tk.END)
+        InputTime.delete(0,tk.END)
     
     def about(self):
         webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
@@ -148,37 +134,13 @@ class App:
     def quit_(self):
         exit()
 
-    # def clear_json(filename='Final Run\\task.json'):
-    #         with open(filename,'w') as file:
-    #             json.dump(fileformat, file, indent = 4)
-
-    # while True:
-    #     schedule.every().day.at("00:00:00").do(clear_json)
-    #     schedule.run_pending()
-    #     time.sleep(1)
-
-
+    
 
 
 if __name__ == "__main__":
     root = tk.Tk()
-
     app = App(root)
     root.mainloop()
+    bk.main()
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
