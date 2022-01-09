@@ -35,7 +35,6 @@ def main():
 
       while True:
         schedule.run_pending()
-        tasklist.pop(0)
         time.sleep(1)
         
     pass
