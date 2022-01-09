@@ -17,7 +17,7 @@ class App:
         root.resizable(width=False, height=False)
         root.title("Tasker")
         root.config(bg="#303443")
-        root.wm_iconbitmap("./Final Run/to-do.ico")
+        root.wm_iconbitmap("to-do.ico")
         
         menubar = tk.Menu(root, background='#303443', fg='#5fb878')
         about_us = tk.Menu(root, tearoff=0)
@@ -156,12 +156,12 @@ class App:
         
     
     def videodemo(self):
-        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        webbrowser.open("https://youtu.be/I3xBXPGrwws")
 
     def github(self):
         webbrowser.open("https://github.com/Codingmasters-YT/Tasker")
     def manual(self):
-        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        webbrowser.open("https://github.com/Codingmasters-YT/Tasker/wiki")
     def contact(self):
         msg.showinfo("Contact Us", "Contact us at: 9810513338")
 
