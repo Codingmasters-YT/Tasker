@@ -138,14 +138,7 @@ class App:
         task_display["bg"] = "#303443"
         task_display["cursor"] = "arrow"
         task_display.place(x=10,y=60,width=974,height=396)
-        f=open('./Final Run/task.json',)
-        data=json.load(f)  
-
-        for i in data['tasks']:
-            bk.tasklist.append(i)
-        for i in bk.tasklist:
-            display=f"Task Name: {i['name'].upper()}\nTime: {i['time']}\n\n"
-            task_display.insert(tk.END,display)
+        
 
         task_display.config(state="disabled")
         
